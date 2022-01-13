@@ -1,3 +1,4 @@
+console.log(process.env.DATABASE_URL);
 module.exports = {
    "type": "postgres",
    "url": process.env.DATABASE_URL,
@@ -10,5 +11,10 @@ module.exports = {
    "cli": {
       "entitiesDir": "src/model",
       "migrationsDir": "src/migration",
-   }
+   },
+   "extra": {
+      "ssl": {
+        rejectUnauthorized: false,
+      }
+    }
 }
