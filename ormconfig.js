@@ -11,11 +11,5 @@ module.exports = {
    "cli": {
       "entitiesDir": "src/model",
       "migrationsDir": "src/migration",
-   },
-   "ssl": false,
-  "extra": {
-    "ssl": {
-      "rejectUnauthorized": false
-    }
-  }
+   }
 }
