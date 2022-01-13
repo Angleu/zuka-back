@@ -1,13 +1,8 @@
-import { Entity, PrimaryGeneratedColumn, Column, UpdateDateColumn, CreateDateColumn, OneToOne } from "typeorm";
-import Address from "./Address";
-
-@Entity()
+import { Entity, PrimaryGeneratedColumn, Column, UpdateDateColumn, CreateDateColumn } from "typeorm";
+@Entity('user')
 export default class User {
     @PrimaryGeneratedColumn('uuid')
     id_user: string
-
-    @OneToOne(type => Address, address => address.user)
-    address: Address
 
     @Column()
     dataBirthday: Date

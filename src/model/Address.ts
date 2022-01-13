@@ -36,3 +36,5 @@ export default class Address {
     updated_at: Date;
 
 }
+console.log(process.env.DATABASE_URL);
+

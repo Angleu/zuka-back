@@ -8,12 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 var typeorm_1 = require("typeorm");
-var Address_1 = __importDefault(require("./Address"));
 var User = /** @class */ (function () {
     function User() {
     }
@@ -21,10 +17,6 @@ var User = /** @class */ (function () {
         (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
         __metadata("design:type", String)
     ], User.prototype, "id_user", void 0);
-    __decorate([
-        (0, typeorm_1.OneToOne)(function (type) { return Address_1.default; }, function (address) { return address.user; }),
-        __metadata("design:type", Address_1.default)
-    ], User.prototype, "address", void 0);
     __decorate([
         (0, typeorm_1.Column)(),
         __metadata("design:type", Date)
@@ -52,7 +44,7 @@ var User = /** @class */ (function () {
         __metadata("design:type", Date)
     ], User.prototype, "updated_at", void 0);
     User = __decorate([
-        (0, typeorm_1.Entity)()
+        (0, typeorm_1.Entity)('user')
     ], User);
     return User;
 }());
