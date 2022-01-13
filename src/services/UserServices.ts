@@ -5,7 +5,7 @@ import User from "../model/User";
 interface UserRequest {
     name: string;
     email: string;
-    dataBirthday: Date
+    dataBirthday:string
     password: string;
     confirmPassword: string;
 }
@@ -19,7 +19,7 @@ export default class UserServices {
         return users;
     }
 
-    async save({ name, email,dataBirthday, password, confirmPassword }: UserRequest): Promise<User | Error> {
+    async save({ name, email, dataBirthday,password, confirmPassword }: UserRequest): Promise<User | Error> {
         const repository = getRepository(User);
 
         if (!name || !email)
@@ -32,10 +32,12 @@ export default class UserServices {
         if (await repository.findOne({ email }))
             return new Error('User already exist');
 
+        const date = Date.parse(dataBirthday)
+
         const user = repository.create({
             name,
             email,
-            dataBirthday,
+            dataBirthday:date,
             password
         });
         await repository.save(user);
