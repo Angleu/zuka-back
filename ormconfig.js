@@ -1,7 +1,7 @@
 console.log(process.env.DATABASE_URL);
 module.exports = {
    "type": "postgres",
-   "url": process.env.DATABASE_URL,
+   // "url": process.env.DATABASE_URL,
    "host": "ec2-18-234-17-166.compute-1.amazonaws.com",
    "port": 5432,
    "username": "lrlpgtfoisugwb",
