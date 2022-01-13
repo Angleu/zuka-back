@@ -9,6 +9,9 @@ export default class User {
     @OneToOne(type => Address, address => address.user)
     address: Address
 
+    @Column()
+    dataBirthday: Date
+    
     @Column('varchar')
     name: string
 

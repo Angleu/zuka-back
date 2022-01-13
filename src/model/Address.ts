@@ -19,6 +19,9 @@ export default class Address {
     user: User;
 
     @Column()
+    country: string;
+
+    @Column()
     city: string;
 
     @Column()

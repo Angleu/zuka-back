@@ -2,12 +2,10 @@ import {Router} from 'express';
 import userRoute from './user.routes';
 import addressRoute from './address.routes';
 import telephoneRoute from './telephone.routes';
-import common_AccountRoute from './common_account.routes';
-import paymentRoute from './payment.routes';
+import common_AccountRoute from './account.routes';
 
 const routes = Router();
 
-routes.use(paymentRoute);
 routes.use(common_AccountRoute);
 routes.use(telephoneRoute);
 routes.use(addressRoute);

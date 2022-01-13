@@ -4,10 +4,10 @@ export class createTableCommonAccount1639657970475 implements MigrationInterface
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(new Table({
-            name: 'common_account',
+            name: 'account',
             columns: [
                 {
-                    name: 'id_common_account',
+                    name: 'id_account',
                     type: 'uuid',
                     isPrimary: true,
                     generationStrategy: 'uuid',
@@ -23,6 +23,11 @@ export class createTableCommonAccount1639657970475 implements MigrationInterface
                     default: 0.0
                 },
                 {
+                    name: 'coin',
+                    type: 'varchar',
+                    isNullable: false,
+                },
+                {
                     name: 'created_at',
                     type: 'timestamp',
                     default: 'now()',
@@ -35,17 +40,18 @@ export class createTableCommonAccount1639657970475 implements MigrationInterface
             ],
             foreignKeys: [
                 {
-                    name: 'fk_commoun-account_user',
+                    name: 'fk_account_user',
                     columnNames: ['id_user'],
                     referencedTableName: 'user',
-                    referencedColumnNames: ['id_user']
+                    referencedColumnNames: ['id_user'],
+                   
                 }
             ]
         }))
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('common_account');
+        await queryRunner.dropTable('account');
     }
 
 }

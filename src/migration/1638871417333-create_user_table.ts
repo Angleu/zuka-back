@@ -20,6 +20,11 @@ export default class createUserTable1638871417333 implements MigrationInterface 
                         isNullable: false
                     },
                     {
+                        name: 'dataBirthday',
+                        type: 'date',
+                        isNullable: false
+                    },
+                    {
                         name: 'email',
                         type: 'varchar',
                         isUnique: true,

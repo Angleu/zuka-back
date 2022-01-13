@@ -7,9 +7,5 @@ const stripe = new Stripe(secretKey, {
     // typescript: true
 });
 
-// stripe.customers.create({
-//     email: 'angleuzua99@gmail.com',
-// });
-
 
 export default stripe;

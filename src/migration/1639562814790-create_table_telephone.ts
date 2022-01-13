@@ -31,7 +31,7 @@ export default class createTableTelephone1639562814790 implements MigrationInter
                     name:'fk_telephone_user',
                     columnNames:['id_user'],
                     referencedTableName: 'user',
-                    referencedColumnNames:['id_user']
+                    referencedColumnNames:['id_user'],
                 }
             ]
         }))

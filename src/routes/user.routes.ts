@@ -1,53 +1,31 @@
 import { Router } from 'express';
-// import { } from 'bcrypt'
 import { getRepository } from 'typeorm';
 import User from '../model/User';
+import Telephone from '../model/Telephone';
+import UserController from '../Controller/UserController';
+
 
 const routes = Router();
 
-routes.get('/user', async (request, response) => {
-    const repository = getRepository(User);
+routes.get('/user', new UserController().handleExecute);
+
+routes.get('/user/:number', async (request, response) => {
+    const {number} = request.params;
+    const repository = getRepository(Telephone);
+    const repositoryUser = getRepository(User);
     try{
-        const users = await repository.find();
+        const telephone = await repository.findOne({where:{number}});
+        // console.log(telephone)
+        const {user} = telephone as Telephone
+        const oldUser = await repositoryUser.findOne({where:{id_user: user}})
+
     
-        return response.json(users).status(204);
+        return response.json(telephone).status(204);
     }catch(error){
         return response.status(401).json(error)
     }
 })
 
-routes.post('/user', async (request, response) => {
-    const { name, email, password, confirmPassword } = request.body;
-    const repository = getRepository(User);
-
-    try {
-        if (!name || !email)
-            throw response.status(400).send('Missing name or password');
-        if (password !== confirmPassword)
-            throw response.status(400).send('you need the same password');
-
-        const user = repository.create();
-
-        const searchUser = await repository.findOne({email});
-        if(searchUser)
-            return response.status(200).send("user already exist")
-
-
-        user.name = name;
-        user.email = email;
-        user.password = password;
-
-        await repository.save(user);
-
-        response.json(user).status(204);
-    } catch (error) {
-        return response.status(401).json(error)
-    }
-
-
-
-
-});
-
+routes.post('/user', new UserController().handleSave);
 
 export default routes;

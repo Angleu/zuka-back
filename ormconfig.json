@@ -1,10 +1,10 @@
 {
    "type": "postgres",
-   "host": "0.0.0.0",
+   "host": "ec2-3-91-135-72.compute-1.amazonaws.com",
    "port": 5432,
-   "username": "postgres",
-   "password": "1234",
-   "database": "zuka",
+   "username": "hqzhpzpufabpdr", 
+   "password": "984e3b254946cbc915af01f390f9bd1cc0c06602aec9212dee998105beb16678",
+   "database": "d6gifedt3vgm28",
    "entities": [
       "src/model/**/*.ts"
    ],

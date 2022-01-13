@@ -19,6 +19,11 @@ export default class createTableAddress1638956829137 implements MigrationInterfa
                         type: 'uuid',
                     },
                     {
+                        name: 'country',
+                        type: 'varchar',
+                        isNullable: false
+                    },
+                    {
                         name: 'city',
                         type: 'varchar',
                         isNullable: false
@@ -43,7 +48,7 @@ export default class createTableAddress1638956829137 implements MigrationInterfa
                         name:'fk_address_user',
                         columnNames:['id_user'],
                         referencedTableName: 'user',
-                        referencedColumnNames:['id_user']
+                        referencedColumnNames:['id_user'],
                     }
                 ]
             }

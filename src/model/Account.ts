@@ -2,18 +2,21 @@ import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGenerat
 import { v4 as uuid } from 'uuid'
 import User from './User';
 
-@Entity('common_account')
-export default class Common_Acccount {
+@Entity('account')
+export default class Acccount {
 
     @PrimaryGeneratedColumn()
-    id_common_account: string;
+    id_account: string;
 
     @ManyToOne(() => User)
     @JoinColumn({ name: 'id_user' })
-    id_user: User;
+    user: User;
 
     @Column()
     balance: number;
+
+    @Column()
+    coin: string;
 
     @Column()
     @CreateDateColumn()
@@ -24,8 +27,8 @@ export default class Common_Acccount {
     updated_at: Date;
 
     constructor() {
-        if (!this.id_common_account) {
-            this.id_common_account = uuid();
+        if (!this.id_account) {
+            this.id_account = uuid();
         }
     }
 }

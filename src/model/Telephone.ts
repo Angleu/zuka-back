@@ -1,17 +1,17 @@
 import {
     Entity,
-    PrimaryGeneratedColumn,
     Column,
     UpdateDateColumn,
     CreateDateColumn,
     OneToOne,
-    JoinColumn
+    JoinColumn,
+    PrimaryColumn
 } from "typeorm";
 import User from "./User";
 
 @Entity('telephone')
 export default class Telephone {
-    @PrimaryGeneratedColumn('uuid')
+    @PrimaryColumn('varchar')
     number: string
 
     @OneToOne(() => User)
