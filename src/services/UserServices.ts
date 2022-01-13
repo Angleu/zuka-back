@@ -32,8 +32,8 @@ export default class UserServices {
         if (await repository.findOne({ email }))
             return new Error('User already exist');
 
-        const date = Date.parse(dataBirthday)
-
+        const date = new Date(dataBirthday)
+        console.log(date);
         const user = repository.create({
             name,
             email,
