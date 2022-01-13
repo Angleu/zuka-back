@@ -75,7 +75,8 @@ var UserServices = /** @class */ (function () {
                     case 1:
                         if (_b.sent())
                             return [2 /*return*/, new Error('User already exist')];
-                        date = Date.parse(dataBirthday);
+                        date = new Date(dataBirthday);
+                        console.log(date);
                         user = repository.create({
                             name: name,
                             email: email,
