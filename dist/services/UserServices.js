@@ -62,7 +62,7 @@ var UserServices = /** @class */ (function () {
     UserServices.prototype.save = function (_a) {
         var name = _a.name, email = _a.email, dataBirthday = _a.dataBirthday, password = _a.password, confirmPassword = _a.confirmPassword;
         return __awaiter(this, void 0, void 0, function () {
-            var repository, user;
+            var repository, date, user;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
@@ -75,10 +75,11 @@ var UserServices = /** @class */ (function () {
                     case 1:
                         if (_b.sent())
                             return [2 /*return*/, new Error('User already exist')];
+                        date = Date.parse(dataBirthday);
                         user = repository.create({
                             name: name,
                             email: email,
-                            dataBirthday: dataBirthday,
+                            dataBirthday: date,
                             password: password
                         });
                         return [4 /*yield*/, repository.save(user)];
