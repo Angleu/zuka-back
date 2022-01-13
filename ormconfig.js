@@ -8,6 +8,11 @@ module.exports = {
    "migrations": [
       "dist/migration/**/*.js"
    ],
+   "synchronize":false,
+   "ssl":{
+      "require": true,
+      "rejectUnauthorized": false,
+   },
    "cli": {
       "entitiesDir": "src/model",
       "migrationsDir": "src/migration",
