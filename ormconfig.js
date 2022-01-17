@@ -20,6 +20,6 @@ module.exports = {
    },
    "cli": {
       "entitiesDir": "src/model",
-      "migrationsDir": "src/migration",
+      "migrationsDir": "src/migration"
    }
 }
