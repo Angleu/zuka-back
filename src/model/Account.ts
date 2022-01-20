@@ -9,7 +9,7 @@ export default class Acccount {
     id_account: string;
 
     @ManyToOne(() => User)
-    @JoinColumn({ name: 'id_user' })
+    @JoinColumn({ name: 'id_user', referencedColumnName:'id_user'})
     user: User;
 
     @Column()

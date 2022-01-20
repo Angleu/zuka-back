@@ -27,7 +27,7 @@ var Acccount = /** @class */ (function () {
     ], Acccount.prototype, "id_account", void 0);
     __decorate([
         (0, typeorm_1.ManyToOne)(function () { return User_1.default; }),
-        (0, typeorm_1.JoinColumn)({ name: 'id_user' }),
+        (0, typeorm_1.JoinColumn)({ name: 'id_user', referencedColumnName: 'id_user' }),
         __metadata("design:type", User_1.default)
     ], Acccount.prototype, "user", void 0);
     __decorate([
