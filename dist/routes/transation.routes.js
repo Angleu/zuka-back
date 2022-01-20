@@ -1,10 +1,6 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var express_1 = require("express");
-var TransationController_1 = __importDefault(require("../Controller/TransationController"));
-var routes = (0, express_1.Router)();
-routes.get('/account/transation', new TransationController_1.default().handleExecute);
-exports.default = routes;
+// import {Router} from 'express';
+// import TransationController from '../Controller/TransationController';
+// const routes = Router();
+// routes.get('/account/transation', new TransationController().handleExecute);
+// export default routes;

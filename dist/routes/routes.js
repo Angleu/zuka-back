@@ -8,6 +8,7 @@ var user_routes_1 = __importDefault(require("./user.routes"));
 var address_routes_1 = __importDefault(require("./address.routes"));
 var telephone_routes_1 = __importDefault(require("./telephone.routes"));
 var account_routes_1 = __importDefault(require("./account.routes"));
+// import transitionRoute from './transation.routes';
 var routes = (0, express_1.Router)();
 // routes.use(transitionRoute);
 routes.use(account_routes_1.default);
