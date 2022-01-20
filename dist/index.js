@@ -15,4 +15,4 @@ var PORT = process.env.PORT || 8080;
 app.use(express_1.default.json());
 app.use((0, cors_1.default)());
 app.use(routes_1.default);
-app.listen(PORT, function () { return console.log('Execute server 8080!!!'); });
+app.listen(PORT, function () { return console.log('Execute server ' + PORT); });

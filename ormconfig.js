@@ -15,7 +15,7 @@ module.exports = {
    ],
    "synchronize":false,
    "ssl":{
-      // "require": true,
+      "require": true,
       "rejectUnauthorized": false,
    },
    "cli": {
