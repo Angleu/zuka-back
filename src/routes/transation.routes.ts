@@ -1,11 +1,10 @@
-import {Router} from 'express';
+// import {Router} from 'express';
+// import TransationController from '../Controller/TransationController';
 
 
-const routes = Router();
+// const routes = Router();
 
-routes.get('/account/transation', (request, response) => {
-        
-});
+// routes.get('/account/transation', new TransationController().handleExecute);
 
 
-export default routes;
+// export default routes;
