@@ -4,7 +4,7 @@
    "main": "index.js",
    "license": "MIT",
    "scripts": {
-      "start": "node dist/index.js --trace-warnings",
+      "start": "node --trace-warnings dist/index.js",
       "dev": "ts-node-dev src/index.ts --esModuleInterop",
       "typeorm": "ts-node-dev --transpile-only ./node_modules/typeorm/cli.js"
    },
