@@ -10,10 +10,10 @@ module.exports = {
    // "password": "98db7f1db7348866443395dd61e2521a62b0bd35517d9365d2fb4aff70f09494",
    // "database": "d8f08eeicmbh8n",
    "entities": [
-      path.join(__dirname, `dist/model/**/*.js`)
+      path.join(__dirname, `dist/model/*.js`)
    ],
    "migrations": [
-      path.join(__dirname, `dist/migration/**/*.js`)
+      path.join(__dirname, `dist/migration/*.js`)
    ],
    "synchronize":false,
    "ssl":{
