@@ -13,13 +13,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var typeorm_1 = require("typeorm");
-var uuid_1 = require("uuid");
 var User_1 = __importDefault(require("./User"));
 var Acccount = /** @class */ (function () {
     function Acccount() {
-        if (!this.id_account) {
-            this.id_account = (0, uuid_1.v4)();
-        }
     }
     __decorate([
         (0, typeorm_1.PrimaryGeneratedColumn)(),
@@ -49,8 +45,7 @@ var Acccount = /** @class */ (function () {
         __metadata("design:type", Date)
     ], Acccount.prototype, "updated_at", void 0);
     Acccount = __decorate([
-        (0, typeorm_1.Entity)('account'),
-        __metadata("design:paramtypes", [])
+        (0, typeorm_1.Entity)('account')
     ], Acccount);
     return Acccount;
 }());

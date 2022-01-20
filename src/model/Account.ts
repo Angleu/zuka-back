@@ -26,9 +26,9 @@ export default class Acccount {
     @UpdateDateColumn()
     updated_at: Date;
 
-    constructor() {
-        if (!this.id_account) {
-            this.id_account = uuid();
-        }
-    }
+    // constructor() {
+    //     if (!this.id_account) {
+    //         this.id_account = uuid();
+    //     }
+    // }
 }

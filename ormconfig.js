@@ -14,7 +14,8 @@ module.exports = {
     ssl: {
       rejectUnauthorized: false,
     },
-    synchronize: true,
+  },
+    // synchronize: true,
     entities: ["dist/model/*.js"],
     subscribers: ["dist/subscriber/*.js"],
     migrations: ["dist/migration/*.js"],
@@ -23,5 +24,4 @@ module.exports = {
       migrationsDir: "src/migration",
       subscribersDir: "src/subscriber",
     },
-  },
-};
+  }
