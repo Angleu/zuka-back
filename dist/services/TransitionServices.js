@@ -39,56 +39,63 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var Transation_1 = __importDefault(require("../model/Transation"));
 var typeorm_1 = require("typeorm");
-var Account_1 = __importDefault(require("../model/Account"));
 var User_1 = __importDefault(require("../model/User"));
-var AccountServices = /** @class */ (function () {
-    function AccountServices() {
+var TransitionServices = /** @class */ (function () {
+    function TransitionServices() {
     }
-    AccountServices.prototype.execute = function () {
+    TransitionServices.prototype.execute = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var repository, accounts;
+            var repository, transation;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        repository = (0, typeorm_1.getRepository)(Account_1.default);
-                        return [4 /*yield*/, repository.find({
-                                relations: ['user']
-                            })];
+                        repository = (0, typeorm_1.getRepository)(Transation_1.default);
+                        return [4 /*yield*/, repository.find()];
                     case 1:
-                        accounts = _a.sent();
-                        return [2 /*return*/, accounts];
+                        transation = _a.sent();
+                        return [2 /*return*/, transation];
                 }
             });
         });
     };
-    AccountServices.prototype.save = function (_a) {
-        var id_user = _a.id_user, _b = _a.coin, coin = _b === void 0 ? 'AOA' : _b;
+    TransitionServices.prototype.save = function (_a) {
+        var to_user = _a.to_user, from_user = _a.from_user, amount = _a.amount, type = _a.type, description = _a.description;
         return __awaiter(this, void 0, void 0, function () {
-            var repository, userRepository, user, account;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
+            var repository, userRepository, t_user, f_user, transation;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
                     case 0:
-                        repository = (0, typeorm_1.getRepository)(Account_1.default);
+                        repository = (0, typeorm_1.getRepository)(Transation_1.default);
+                        if (!to_user || !from_user)
+                            return [2 /*return*/, new Error('Missing data to transition')];
+                        if (!amount)
+                            return [2 /*return*/, new Error('Missing value')];
                         userRepository = (0, typeorm_1.getRepository)(User_1.default);
-                        return [4 /*yield*/, userRepository.findOne({ where: { id_user: id_user } })];
+                        return [4 /*yield*/, userRepository.findOne({ where: { id_user: to_user } })];
                     case 1:
-                        user = _c.sent();
-                        if (!user)
-                            return [2 /*return*/, new Error("User does not exist")];
-                        account = repository.create({
-                            user: user,
-                            coin: coin,
-                            balance: 0
-                        });
-                        return [4 /*yield*/, repository.save(account)];
+                        t_user = _b.sent();
+                        return [4 /*yield*/, userRepository.findOne({ where: { id_user: from_user } })];
                     case 2:
-                        _c.sent();
-                        return [2 /*return*/, account];
+                        f_user = _b.sent();
+                        if (!t_user || !f_user)
+                            return [2 /*return*/, new Error('Users does not exist')];
+                        transation = repository.create({
+                            amount: amount,
+                            description: description,
+                            type: type,
+                            to_user: t_user,
+                            from_user: f_user
+                        });
+                        return [4 /*yield*/, repository.save(transation)];
+                    case 3:
+                        _b.sent();
+                        return [2 /*return*/, transation];
                 }
             });
         });
     };
-    return AccountServices;
+    return TransitionServices;
 }());
-exports.default = AccountServices;
+exports.default = TransitionServices;

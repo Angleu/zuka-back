@@ -39,56 +39,43 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var typeorm_1 = require("typeorm");
-var Account_1 = __importDefault(require("../model/Account"));
-var User_1 = __importDefault(require("../model/User"));
-var AccountServices = /** @class */ (function () {
-    function AccountServices() {
+var TransitionServices_1 = __importDefault(require("../services/TransitionServices"));
+var TransationController = /** @class */ (function () {
+    function TransationController() {
     }
-    AccountServices.prototype.execute = function () {
+    TransationController.prototype.handleExecute = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var repository, accounts;
+            var service, result;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        repository = (0, typeorm_1.getRepository)(Account_1.default);
-                        return [4 /*yield*/, repository.find({
-                                relations: ['user']
-                            })];
+                        service = new TransitionServices_1.default();
+                        return [4 /*yield*/, service.execute()];
                     case 1:
-                        accounts = _a.sent();
-                        return [2 /*return*/, accounts];
+                        result = _a.sent();
+                        response.status(200).json(result);
+                        return [2 /*return*/];
                 }
             });
         });
     };
-    AccountServices.prototype.save = function (_a) {
-        var id_user = _a.id_user, _b = _a.coin, coin = _b === void 0 ? 'AOA' : _b;
+    TransationController.prototype.handleSave = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var repository, userRepository, user, account;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
+            var _a, amount, description, type, to_user, from_user, result;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
                     case 0:
-                        repository = (0, typeorm_1.getRepository)(Account_1.default);
-                        userRepository = (0, typeorm_1.getRepository)(User_1.default);
-                        return [4 /*yield*/, userRepository.findOne({ where: { id_user: id_user } })];
+                        _a = request.body, amount = _a.amount, description = _a.description, type = _a.type, to_user = _a.to_user, from_user = _a.from_user;
+                        return [4 /*yield*/, new TransitionServices_1.default().save({ amount: amount, description: description, type: type, to_user: to_user, from_user: from_user })];
                     case 1:
-                        user = _c.sent();
-                        if (!user)
-                            return [2 /*return*/, new Error("User does not exist")];
-                        account = repository.create({
-                            user: user,
-                            coin: coin,
-                            balance: 0
-                        });
-                        return [4 /*yield*/, repository.save(account)];
-                    case 2:
-                        _c.sent();
-                        return [2 /*return*/, account];
+                        result = _b.sent();
+                        if (result instanceof Error)
+                            return [2 /*return*/, response.status(401).json(result.message)];
+                        return [2 /*return*/, response.status(200).json(result)];
                 }
             });
         });
     };
-    return AccountServices;
+    return TransationController;
 }());
-exports.default = AccountServices;
+exports.default = TransationController;

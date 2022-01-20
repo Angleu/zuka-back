@@ -13,13 +13,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var typeorm_1 = require("typeorm");
-var uuid_1 = require("uuid");
 var Account_1 = __importDefault(require("./Account"));
 var Transation = /** @class */ (function () {
     function Transation() {
-        if (!this.id_transation) {
-            this.id_transation = (0, uuid_1.v4)();
-        }
     }
     __decorate([
         (0, typeorm_1.PrimaryGeneratedColumn)(),
@@ -27,18 +23,18 @@ var Transation = /** @class */ (function () {
     ], Transation.prototype, "id_transation", void 0);
     __decorate([
         (0, typeorm_1.ManyToOne)(function () { return Account_1.default; }),
-        (0, typeorm_1.JoinColumn)({ name: 'id_account' }),
+        (0, typeorm_1.JoinColumn)({ name: 'id_account', referencedColumnName: 'to_user' }),
         __metadata("design:type", Account_1.default)
     ], Transation.prototype, "to_user", void 0);
     __decorate([
         (0, typeorm_1.ManyToOne)(function () { return Account_1.default; }),
-        (0, typeorm_1.JoinColumn)({ name: 'id_account' }),
+        (0, typeorm_1.JoinColumn)({ name: 'id_account', referencedColumnName: 'from_user' }),
         __metadata("design:type", Account_1.default)
     ], Transation.prototype, "from_user", void 0);
     __decorate([
         (0, typeorm_1.Column)(),
         __metadata("design:type", Number)
-    ], Transation.prototype, "account", void 0);
+    ], Transation.prototype, "amount", void 0);
     __decorate([
         (0, typeorm_1.Column)(),
         __metadata("design:type", String)
@@ -53,8 +49,7 @@ var Transation = /** @class */ (function () {
         __metadata("design:type", Date)
     ], Transation.prototype, "created_at", void 0);
     Transation = __decorate([
-        (0, typeorm_1.Entity)('transation'),
-        __metadata("design:paramtypes", [])
+        (0, typeorm_1.Entity)('transation')
     ], Transation);
     return Transation;
 }());
