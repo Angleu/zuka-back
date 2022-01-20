@@ -1,4 +1,4 @@
-import path from 'fs';
+const path = require('fs');
 console.log(process.env.DATABASE_URL);
 module.exports = {
    "type": "postgres",
