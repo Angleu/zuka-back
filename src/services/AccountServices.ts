@@ -29,7 +29,7 @@ export default class AccountServices {
         const account = repository.create({
             user,
             coin,
-            balance:0
+            balance: 0.0
         });
 
         await repository.save(account);

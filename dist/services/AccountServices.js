@@ -79,7 +79,7 @@ var AccountServices = /** @class */ (function () {
                         account = repository.create({
                             user: user,
                             coin: coin,
-                            balance: 0
+                            balance: 0.0
                         });
                         return [4 /*yield*/, repository.save(account)];
                     case 2:

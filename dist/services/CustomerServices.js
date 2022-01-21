@@ -39,46 +39,72 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var TransitionServices_1 = __importDefault(require("../services/TransitionServices"));
-var TransationController = /** @class */ (function () {
-    function TransationController() {
+var stripe_1 = __importDefault(require("stripe"));
+var Customers_1 = __importDefault(require("../Entities/Customers"));
+var stripe = new stripe_1.default('sk_test_51K3dtoF9im6ZmFp2MCTksOhu7T87uTncuTpPx3b7vsz9ABekS2uwHzEBUjgCShrYoZEyKtxz6iui5X2KPRPb9jko00d3ep3dy8', {
+    apiVersion: '2020-08-27',
+});
+var CustomerServices = /** @class */ (function () {
+    function CustomerServices() {
     }
-    TransationController.prototype.handleExecute = function (request, response) {
+    CustomerServices.prototype.execute = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var id_account, service, result;
+            var customers, result;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        id_account = request.body.id_account;
-                        service = new TransitionServices_1.default();
-                        return [4 /*yield*/, service.execute(id_account)];
+                        customers = Array();
+                        return [4 /*yield*/, stripe.customers.list()];
                     case 1:
-                        result = _a.sent();
-                        if (result instanceof Error)
-                            response.json(result.message).status(401);
-                        response.status(200).json(result);
-                        return [2 /*return*/];
+                        result = (_a.sent()).data;
+                        if (!result)
+                            return [2 /*return*/, new Error("Something wrong happened")];
+                        result.map(function (customer) {
+                            var id = customer.id, name = customer.name, email = customer.email, address = customer.address, phone = customer.phone;
+                            customers.push(new Customers_1.default(id, name, email, address, phone));
+                        });
+                        return [2 /*return*/, customers];
                 }
             });
         });
     };
-    TransationController.prototype.handleSave = function (request, response) {
+    /**
+     * @function save realize and create a payment
+     * @param name name
+     * @param email email
+     * @param address address object (city, country, state and postal_code)
+     * @param phone address object
+     */
+    CustomerServices.prototype.save = function (_a) {
+        var name = _a.name, email = _a.email, address = _a.address, phone = _a.phone;
         return __awaiter(this, void 0, void 0, function () {
-            var _a, amount, description, type, to_user, email, coin, result;
+            var city, country, state, postal_code, custumer, cus;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
-                        _a = request.body, amount = _a.amount, description = _a.description, type = _a.type, to_user = _a.to_user, email = _a.email, coin = _a.coin;
-                        return [4 /*yield*/, new TransitionServices_1.default().save({ amount: amount, description: description, type: type, to_user: to_user, email: email, coin: coin })];
+                        city = address.city, country = address.country, state = address.state, postal_code = address.postal_code;
+                        return [4 /*yield*/, stripe.customers.create({
+                                name: name,
+                                email: email,
+                                address: {
+                                    line1: '',
+                                    city: city,
+                                    country: country,
+                                    state: state,
+                                    postal_code: postal_code || ''
+                                },
+                                phone: phone,
+                            })];
                     case 1:
-                        result = _b.sent();
-                        if (result instanceof Error)
-                            return [2 /*return*/, response.status(401).json(result.message)];
-                        return [2 /*return*/, response.status(200).json(result)];
+                        custumer = _b.sent();
+                        if (custumer instanceof Error)
+                            return [2 /*return*/, new Error("Missing date")];
+                        cus = new Customers_1.default(custumer.id, name, email, address, phone);
+                        return [2 /*return*/, cus];
                 }
             });
         });
     };
-    return TransationController;
+    return CustomerServices;
 }());
-exports.default = TransationController;
+exports.default = CustomerServices;

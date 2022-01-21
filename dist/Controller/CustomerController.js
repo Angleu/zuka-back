@@ -39,37 +39,36 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var TransitionServices_1 = __importDefault(require("../services/TransitionServices"));
-var TransationController = /** @class */ (function () {
-    function TransationController() {
+var CustomerServices_1 = __importDefault(require("../services/CustomerServices"));
+var CustomerController = /** @class */ (function () {
+    function CustomerController() {
     }
-    TransationController.prototype.handleExecute = function (request, response) {
+    CustomerController.prototype.handleExecute = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var id_account, service, result;
+            var service, result;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        id_account = request.body.id_account;
-                        service = new TransitionServices_1.default();
-                        return [4 /*yield*/, service.execute(id_account)];
+                        service = new CustomerServices_1.default();
+                        return [4 /*yield*/, service.execute()];
                     case 1:
                         result = _a.sent();
                         if (result instanceof Error)
-                            response.json(result.message).status(401);
-                        response.status(200).json(result);
-                        return [2 /*return*/];
+                            return [2 /*return*/, response.status(400).json(result.message)];
+                        return [2 /*return*/, response.status(200).json(result)];
                 }
             });
         });
     };
-    TransationController.prototype.handleSave = function (request, response) {
+    CustomerController.prototype.handleSave = function (request, response) {
         return __awaiter(this, void 0, void 0, function () {
-            var _a, amount, description, type, to_user, email, coin, result;
+            var _a, name, email, address, phone, service, result;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
-                        _a = request.body, amount = _a.amount, description = _a.description, type = _a.type, to_user = _a.to_user, email = _a.email, coin = _a.coin;
-                        return [4 /*yield*/, new TransitionServices_1.default().save({ amount: amount, description: description, type: type, to_user: to_user, email: email, coin: coin })];
+                        _a = request.body, name = _a.name, email = _a.email, address = _a.address, phone = _a.phone;
+                        service = new CustomerServices_1.default();
+                        return [4 /*yield*/, service.save({ name: name, email: email, address: address, phone: phone })];
                     case 1:
                         result = _b.sent();
                         if (result instanceof Error)
@@ -79,6 +78,6 @@ var TransationController = /** @class */ (function () {
             });
         });
     };
-    return TransationController;
+    return CustomerController;
 }());
-exports.default = TransationController;
+exports.default = CustomerController;

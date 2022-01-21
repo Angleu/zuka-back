@@ -1,10 +1,11 @@
-// import {Router} from 'express';
-// import TransationController from '../Controller/TransationController';
+import {Router} from 'express';
+import TransationController from '../Controller/TransationController';
 
 
-// const routes = Router();
+const routes = Router();
 
-// routes.get('/account/transation', new TransationController().handleExecute);
+routes.get('/account/transation', new TransationController().handleExecute);
+routes.post('/account/transation', new TransationController().handleSave);
 
 
-// export default routes;
+export default routes;
