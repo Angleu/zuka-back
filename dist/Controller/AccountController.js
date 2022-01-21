@@ -78,6 +78,25 @@ var AccountController = /** @class */ (function () {
             });
         });
     };
+    AccountController.prototype.hadleExecuteOne = function (request, response) {
+        return __awaiter(this, void 0, void 0, function () {
+            var id_user, service, account;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        id_user = request.params.id_user;
+                        service = new AccountServices_1.default();
+                        return [4 /*yield*/, service.executeOneAccount(id_user)];
+                    case 1:
+                        account = _a.sent();
+                        if (account instanceof Error)
+                            response.json(account.message).status(401);
+                        response.json(account).status(200);
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     return AccountController;
 }());
 exports.default = AccountController;

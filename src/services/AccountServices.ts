@@ -37,4 +37,20 @@ export default class AccountServices {
         return account;
 
     }
+
+    async executeOneAccount(id_user : string):Promise<Account[]|Error>{
+        const repository = getRepository(Account);
+        const userRepository = getRepository(User);
+        const user = await userRepository.findOne({where:{
+            id_user
+        }})
+        const account = await repository.find({
+            where:{user}
+        });
+
+        if(!account)
+            return new Error('Account does not exist')
+
+        return account;
+    }
 }

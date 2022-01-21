@@ -89,6 +89,31 @@ var AccountServices = /** @class */ (function () {
             });
         });
     };
+    AccountServices.prototype.executeOneAccount = function (id_user) {
+        return __awaiter(this, void 0, void 0, function () {
+            var repository, userRepository, user, account;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        repository = (0, typeorm_1.getRepository)(Account_1.default);
+                        userRepository = (0, typeorm_1.getRepository)(User_1.default);
+                        return [4 /*yield*/, userRepository.findOne({ where: {
+                                    id_user: id_user
+                                } })];
+                    case 1:
+                        user = _a.sent();
+                        return [4 /*yield*/, repository.find({
+                                where: { user: user }
+                            })];
+                    case 2:
+                        account = _a.sent();
+                        if (!account)
+                            return [2 /*return*/, new Error('Account does not exist')];
+                        return [2 /*return*/, account];
+                }
+            });
+        });
+    };
     return AccountServices;
 }());
 exports.default = AccountServices;

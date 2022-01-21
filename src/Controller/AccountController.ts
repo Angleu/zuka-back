@@ -21,4 +21,14 @@ export default class AccountController {
         response.status(200).json(address);
 
     }
+    async hadleExecuteOne(request: Request, response: Response) {
+        const { id_user } = request.params;
+        const service = new AccountServices();
+        const account = await service.executeOneAccount(id_user);
+
+        if (account instanceof Error)
+            response.json(account.message).status(401);
+
+        response.json(account).status(200);
+    }
 }
