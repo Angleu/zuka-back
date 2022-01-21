@@ -97,9 +97,11 @@ var AccountServices = /** @class */ (function () {
                     case 0:
                         repository = (0, typeorm_1.getRepository)(Account_1.default);
                         userRepository = (0, typeorm_1.getRepository)(User_1.default);
-                        return [4 /*yield*/, userRepository.findOne({ where: {
+                        return [4 /*yield*/, userRepository.findOne({
+                                where: {
                                     id_user: id_user
-                                } })];
+                                }
+                            })];
                     case 1:
                         user = _a.sent();
                         return [4 /*yield*/, repository.find({
@@ -107,6 +109,37 @@ var AccountServices = /** @class */ (function () {
                             })];
                     case 2:
                         account = _a.sent();
+                        if (!account)
+                            return [2 /*return*/, new Error('Account does not exist')];
+                        return [2 /*return*/, account];
+                }
+            });
+        });
+    };
+    AccountServices.prototype.depositExecute = function (id_account, amount, coin) {
+        return __awaiter(this, void 0, void 0, function () {
+            var repository, account, value;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        repository = (0, typeorm_1.getRepository)(Account_1.default);
+                        return [4 /*yield*/, repository.findOne({
+                                where: {
+                                    coin: coin,
+                                    id_account: id_account
+                                }
+                            })];
+                    case 1:
+                        account = _a.sent();
+                        value = Number.parseFloat(account === null || account === void 0 ? void 0 : account.balance) + amount;
+                        console.log(value);
+                        return [4 /*yield*/, repository.update({
+                                id_account: id_account
+                            }, {
+                                balance: value
+                            })];
+                    case 2:
+                        _a.sent();
                         if (!account)
                             return [2 /*return*/, new Error('Account does not exist')];
                         return [2 /*return*/, account];

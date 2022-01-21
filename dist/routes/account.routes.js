@@ -9,4 +9,5 @@ var routes = (0, express_1.Router)();
 routes.get('/account', new AccountController_1.default().hadleExecute);
 routes.get('/account/:id_user', new AccountController_1.default().hadleExecuteOne);
 routes.post('/account', new AccountController_1.default().hadleSave);
+routes.post('/account/deposit', new AccountController_1.default().hadleDepositExecute);
 exports.default = routes;

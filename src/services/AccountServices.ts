@@ -38,19 +38,49 @@ export default class AccountServices {
 
     }
 
-    async executeOneAccount(id_user : string):Promise<Account[]|Error>{
+    async executeOneAccount(id_user: string): Promise<Account[] | Error> {
         const repository = getRepository(Account);
         const userRepository = getRepository(User);
-        const user = await userRepository.findOne({where:{
-            id_user
-        }})
+        const user = await userRepository.findOne({
+            where: {
+                id_user
+            }
+        })
         const account = await repository.find({
-            where:{user}
+            where: { user }
         });
 
-        if(!account)
+        if (!account)
             return new Error('Account does not exist')
 
         return account;
+    }
+
+    async depositExecute(id_account: string, amount: number, coin: string): Promise<Account | Error> {
+        const repository = getRepository(Account);
+        
+        const account = await repository.findOne({
+            where: {
+                coin,
+                id_account
+            }
+        })
+        const value = Number.parseFloat(account?.balance as unknown as string) + amount;
+    
+        console.log(value);
+        await repository.update({
+           id_account
+        },
+        {
+            balance: value 
+        })
+
+        
+
+        if (!account)
+            return new Error('Account does not exist');
+
+        return account;
+
     }
 }

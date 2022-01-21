@@ -97,6 +97,25 @@ var AccountController = /** @class */ (function () {
             });
         });
     };
+    AccountController.prototype.hadleDepositExecute = function (request, response) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a, id_account, amount, coin, service, account;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = request.body, id_account = _a.id_account, amount = _a.amount, coin = _a.coin;
+                        service = new AccountServices_1.default();
+                        return [4 /*yield*/, service.depositExecute(id_account, amount, coin)];
+                    case 1:
+                        account = _b.sent();
+                        if (account instanceof Error)
+                            response.json(account.message).status(401);
+                        response.json(account).status(200);
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     return AccountController;
 }());
 exports.default = AccountController;

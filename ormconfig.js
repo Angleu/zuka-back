@@ -5,11 +5,11 @@ module.exports = {
   type: "postgres",
   url: process.env.DATABASE_URL,
   logging: true,
-  extra: {
-    ssl: {
-      rejectUnauthorized: false,
-    },
-  },
+  // extra: {
+  //   ssl: {
+  //     rejectUnauthorized: false,
+  //   },
+  // },
     // synchronize: true,
     entities: ["dist/model/*.js"],
     subscribers: ["dist/subscriber/*.js"],

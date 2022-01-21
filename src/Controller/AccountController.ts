@@ -31,4 +31,14 @@ export default class AccountController {
 
         response.json(account).status(200);
     }
+    async hadleDepositExecute(request: Request, response: Response) {
+        const { id_account, amount, coin } = request.body;
+        const service = new AccountServices();
+        const account = await service.depositExecute(id_account, amount, coin);
+
+        if (account instanceof Error)
+            response.json(account.message).status(401);
+
+        response.json(account).status(200);
+    }
 }
