@@ -3,11 +3,13 @@ import { getRepository } from 'typeorm';
 import User from '../model/User';
 import Telephone from '../model/Telephone';
 import UserController from '../Controller/UserController';
+import LoginController from '../Controller/LoginController';
 
 
 const routes = Router();
 
 routes.get('/user', new UserController().handleExecute);
+routes.get('/user/login', new LoginController().handleExecuteOnce)
 
 routes.get('/user/:number', async (request, response) => {
     const {number} = request.params;

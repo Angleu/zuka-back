@@ -39,40 +39,34 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var express_1 = require("express");
 var typeorm_1 = require("typeorm");
 var User_1 = __importDefault(require("../model/User"));
-var Telephone_1 = __importDefault(require("../model/Telephone"));
-var UserController_1 = __importDefault(require("../Controller/UserController"));
-var LoginController_1 = __importDefault(require("../Controller/LoginController"));
-var routes = (0, express_1.Router)();
-routes.get('/user', new UserController_1.default().handleExecute);
-routes.get('/user/login', new LoginController_1.default().handleExecuteOnce);
-routes.get('/user/:number', function (request, response) { return __awaiter(void 0, void 0, void 0, function () {
-    var number, repository, repositoryUser, telephone, user, oldUser, error_1;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                number = request.params.number;
-                repository = (0, typeorm_1.getRepository)(Telephone_1.default);
-                repositoryUser = (0, typeorm_1.getRepository)(User_1.default);
-                _a.label = 1;
-            case 1:
-                _a.trys.push([1, 4, , 5]);
-                return [4 /*yield*/, repository.findOne({ where: { number: number } })];
-            case 2:
-                telephone = _a.sent();
-                user = telephone.user;
-                return [4 /*yield*/, repositoryUser.findOne({ where: { id_user: user } })];
-            case 3:
-                oldUser = _a.sent();
-                return [2 /*return*/, response.json(telephone).status(204)];
-            case 4:
-                error_1 = _a.sent();
-                return [2 /*return*/, response.status(401).json(error_1)];
-            case 5: return [2 /*return*/];
-        }
-    });
-}); });
-routes.post('/user', new UserController_1.default().handleSave);
-exports.default = routes;
+var LoginServices = /** @class */ (function () {
+    function LoginServices() {
+    }
+    LoginServices.prototype.executeOnce = function (email, password) {
+        return __awaiter(this, void 0, void 0, function () {
+            var repository, user;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        repository = (0, typeorm_1.getRepository)(User_1.default);
+                        return [4 /*yield*/, repository.findOne({
+                                where: {
+                                    email: email,
+                                }
+                            })];
+                    case 1:
+                        user = _a.sent();
+                        if (!user)
+                            return [2 /*return*/, new Error("User does not exist")];
+                        if (user.password !== password)
+                            return [2 /*return*/, new Error("Wrong Password try again")];
+                        return [2 /*return*/, user];
+                }
+            });
+        });
+    };
+    return LoginServices;
+}());
+exports.default = LoginServices;
