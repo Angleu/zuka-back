@@ -8,7 +8,7 @@ module.exports = {
       rejectUnauthorized: false,
     },
   },
-    synchronize: true,
+    // synchronize: true,
     entities: ["dist/model/*.js"],
     subscribers: ["dist/subscriber/*.js"],
     migrations: ["dist/migration/*.js"],
