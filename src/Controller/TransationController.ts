@@ -5,7 +5,7 @@ import TransitionServices from "../services/TransitionServices";
 class TransationController {
 
     async handleExecute(request: Request, response: Response){
-        const { id_account } = request.params;
+        const { id_account } = request.params; // receve param
         const service = new TransitionServices();
         const result = await service.execute(id_account);
 
