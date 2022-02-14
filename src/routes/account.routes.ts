@@ -4,7 +4,7 @@ import AccountController from '../Controller/AccountController';
 const routes = Router();
 
 routes.get('/account', new AccountController().hadleExecute);
-routes.get('/account/:id_user', new AccountController().hadleExecuteOne);
+routes.get('/account/:id_user', new AccountController().hadleExecuteOne); // Precisa de analise
 routes.post('/account', new AccountController().hadleSave);
 routes.post('/account/deposit', new AccountController().hadleDepositExecute);
 
