@@ -88,7 +88,7 @@ var AccountController = /** @class */ (function () {
                     case 1:
                         account = _a.sent();
                         if (account instanceof Error)
-                            return [2 /*return*/, response.json(account.message).status(401)];
+                            return [2 /*return*/, response.send(account.message).status(401)];
                         return [2 /*return*/, response.json(account).status(200)];
                 }
             });

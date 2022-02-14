@@ -38,7 +38,7 @@ export default class AccountServices {
 
     }
 
-    async executeOneAccount(id_user: string): Promise<Account[] | Error> {
+    async executeOneAccount(id_user: string): Promise<Account | Error> {
         const repository = getRepository(Account);
         const userRepository = getRepository(User);
         const user = await userRepository.findOne({
@@ -46,7 +46,7 @@ export default class AccountServices {
                 id_user
             }
         })
-        const account = await repository.find({
+        const account = await repository.findOne({
             where: { user }
         });
 

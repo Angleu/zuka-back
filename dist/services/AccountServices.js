@@ -104,7 +104,7 @@ var AccountServices = /** @class */ (function () {
                             })];
                     case 1:
                         user = _a.sent();
-                        return [4 /*yield*/, repository.find({
+                        return [4 /*yield*/, repository.findOne({
                                 where: { user: user }
                             })];
                     case 2:
