@@ -47,7 +47,7 @@ var UserController_1 = __importDefault(require("../Controller/UserController"));
 var LoginController_1 = __importDefault(require("../Controller/LoginController"));
 var routes = (0, express_1.Router)();
 routes.get('/user', new UserController_1.default().handleExecute);
-routes.get('/user/login', new LoginController_1.default().handleExecuteOnce);
+routes.post('/user/login', new LoginController_1.default().handleExecuteOnce);
 routes.get('/user/:number', function (request, response) { return __awaiter(void 0, void 0, void 0, function () {
     var number, repository, repositoryUser, telephone, user, oldUser, error_1;
     return __generator(this, function (_a) {

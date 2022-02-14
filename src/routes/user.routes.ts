@@ -9,7 +9,7 @@ import LoginController from '../Controller/LoginController';
 const routes = Router();
 
 routes.get('/user', new UserController().handleExecute);
-routes.get('/user/login', new LoginController().handleExecuteOnce)
+routes.post('/user/login', new LoginController().handleExecuteOnce)
 
 routes.get('/user/:number', async (request, response) => {
     const {number} = request.params;
