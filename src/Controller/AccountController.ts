@@ -27,7 +27,7 @@ export default class AccountController {
         const account = await service.executeOneAccount(id_user);
 
         if (account instanceof Error)
-            return response.json(account.message).status(401);
+            return response.send(account.message).status(401);
 
        return response.json(account).status(200);
     }
