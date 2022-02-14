@@ -49,7 +49,7 @@ var TransationController = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        id_account = request.body.id_account;
+                        id_account = request.params.id_account;
                         service = new TransitionServices_1.default();
                         return [4 /*yield*/, service.execute(id_account)];
                     case 1:
