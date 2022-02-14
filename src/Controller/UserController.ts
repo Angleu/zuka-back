@@ -7,7 +7,7 @@ class UserController {
     async handleExecute(request: Request, response: Response){
         const service = new UserServices();
         const result = await service.execute();
-        response.status(200).json(result);
+        return response.status(200).json(result);
     }  
 
    async handleSave(request: Request, response: Response) {

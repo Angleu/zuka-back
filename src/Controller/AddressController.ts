@@ -16,9 +16,9 @@ export default class AddressController {
         const address = await service.save({ id_user, country ,street, city });
 
         if (address instanceof Error)
-            response.status(401).json(address.message);
+            return response.status(401).json(address.message);
 
-        response.status(200).json(address);
+        return response.status(200).json(address);
 
     }
 }

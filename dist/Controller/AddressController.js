@@ -71,9 +71,8 @@ var AddressController = /** @class */ (function () {
                     case 1:
                         address = _b.sent();
                         if (address instanceof Error)
-                            response.status(401).json(address.message);
-                        response.status(200).json(address);
-                        return [2 /*return*/];
+                            return [2 /*return*/, response.status(401).json(address.message)];
+                        return [2 /*return*/, response.status(200).json(address)];
                 }
             });
         });

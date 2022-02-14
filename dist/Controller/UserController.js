@@ -53,8 +53,7 @@ var UserController = /** @class */ (function () {
                         return [4 /*yield*/, service.execute()];
                     case 1:
                         result = _a.sent();
-                        response.status(200).json(result);
-                        return [2 /*return*/];
+                        return [2 /*return*/, response.status(200).json(result)];
                 }
             });
         });

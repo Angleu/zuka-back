@@ -53,8 +53,7 @@ var AccountController = /** @class */ (function () {
                         return [4 /*yield*/, service.execute()];
                     case 1:
                         addresses = _a.sent();
-                        response.status(200).json(addresses);
-                        return [2 /*return*/];
+                        return [2 /*return*/, response.status(200).json(addresses)];
                 }
             });
         });
@@ -71,9 +70,8 @@ var AccountController = /** @class */ (function () {
                     case 1:
                         address = _b.sent();
                         if (address instanceof Error)
-                            response.status(401).json(address.message);
-                        response.status(200).json(address);
-                        return [2 /*return*/];
+                            return [2 /*return*/, response.status(401).json(address.message)];
+                        return [2 /*return*/, response.status(200).json(address)];
                 }
             });
         });
@@ -90,9 +88,8 @@ var AccountController = /** @class */ (function () {
                     case 1:
                         account = _a.sent();
                         if (account instanceof Error)
-                            response.json(account.message).status(401);
-                        response.json(account).status(200);
-                        return [2 /*return*/];
+                            return [2 /*return*/, response.json(account.message).status(401)];
+                        return [2 /*return*/, response.json(account).status(200)];
                 }
             });
         });
@@ -109,9 +106,8 @@ var AccountController = /** @class */ (function () {
                     case 1:
                         account = _b.sent();
                         if (account instanceof Error)
-                            response.json(account.message).status(401);
-                        response.json(account).status(200);
-                        return [2 /*return*/];
+                            return [2 /*return*/, response.json(account.message).status(401)];
+                        return [2 /*return*/, response.json(account).status(200)];
                 }
             });
         });

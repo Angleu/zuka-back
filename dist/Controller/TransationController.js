@@ -55,9 +55,8 @@ var TransationController = /** @class */ (function () {
                     case 1:
                         result = _a.sent();
                         if (result instanceof Error)
-                            response.json(result.message).status(401);
-                        response.status(200).json(result);
-                        return [2 /*return*/];
+                            return [2 /*return*/, response.json(result.message).status(401)];
+                        return [2 /*return*/, response.status(200).json(result)];
                 }
             });
         });

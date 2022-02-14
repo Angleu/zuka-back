@@ -10,9 +10,9 @@ class TransationController {
         const result = await service.execute(id_account);
 
         if(result instanceof Error)
-        response.json(result.message).status(401);
+        return response.json(result.message).status(401);
 
-        response.status(200).json(result);
+        return response.status(200).json(result);
     }  
 
    async handleSave(request: Request, response: Response) {

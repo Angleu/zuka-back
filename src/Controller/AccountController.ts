@@ -7,7 +7,7 @@ export default class AccountController {
         const service = new AccountServices();
         const addresses = await service.execute();
 
-        response.status(200).json(addresses);
+       return response.status(200).json(addresses);
 
     }
     async hadleSave(request: Request, response: Response) {
@@ -16,9 +16,9 @@ export default class AccountController {
         const address = await service.save({ id_user, coin });
 
         if (address instanceof Error)
-            response.status(401).json(address.message);
+            return response.status(401).json(address.message);
 
-        response.status(200).json(address);
+       return response.status(200).json(address);
 
     }
     async hadleExecuteOne(request: Request, response: Response) {
@@ -27,9 +27,9 @@ export default class AccountController {
         const account = await service.executeOneAccount(id_user);
 
         if (account instanceof Error)
-            response.json(account.message).status(401);
+            return response.json(account.message).status(401);
 
-        response.json(account).status(200);
+       return response.json(account).status(200);
     }
     async hadleDepositExecute(request: Request, response: Response) {
         const { id_account, amount, coin } = request.body;
@@ -37,8 +37,8 @@ export default class AccountController {
         const account = await service.depositExecute(id_account, amount, coin);
 
         if (account instanceof Error)
-            response.json(account.message).status(401);
+            return response.json(account.message).status(401);
 
-        response.json(account).status(200);
+        return response.json(account).status(200);
     }
 }
