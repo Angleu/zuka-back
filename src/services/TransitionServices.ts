@@ -15,7 +15,7 @@ interface TransationRequest{
 export default class TransitionServices {
     async execute(id_account: string): Promise<Transation[] | Error> {
         const repository = getRepository(Transation);
-        const AccountRepository = getRepository(Account);
+        const AccountRepository = getRepository(Account); // repository
         const account = await AccountRepository.findOne({where:{
             id_account
         }})
