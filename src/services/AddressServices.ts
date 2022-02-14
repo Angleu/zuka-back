@@ -17,6 +17,20 @@ export default class AddressServices {
         });
         return addresses;
     }
+    async executeOnce(id_user: string): Promise<Address | Error> {
+        const repository = getRepository(Address);
+        const userRepository = getRepository(User);
+        const user = await userRepository.findOne({
+            where: {id_user}
+        });
+        const address = await repository.findOne({
+            where: {user}
+        });
+
+        if(!address)
+            return new Error('Address not found');
+        return address;
+    }
     async save({id_user, country,street, city}: AddressRequest): Promise<Address | Error> {
 
         const repository = getRepository(Address);

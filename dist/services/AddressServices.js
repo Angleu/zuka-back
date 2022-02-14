@@ -62,6 +62,31 @@ var AddressServices = /** @class */ (function () {
             });
         });
     };
+    AddressServices.prototype.executeOnce = function (id_user) {
+        return __awaiter(this, void 0, void 0, function () {
+            var repository, userRepository, user, address;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        repository = (0, typeorm_1.getRepository)(Address_1.default);
+                        userRepository = (0, typeorm_1.getRepository)(User_1.default);
+                        return [4 /*yield*/, userRepository.findOne({
+                                where: { id_user: id_user }
+                            })];
+                    case 1:
+                        user = _a.sent();
+                        return [4 /*yield*/, repository.findOne({
+                                where: { user: user }
+                            })];
+                    case 2:
+                        address = _a.sent();
+                        if (!address)
+                            return [2 /*return*/, new Error('Address not found')];
+                        return [2 /*return*/, address];
+                }
+            });
+        });
+    };
     AddressServices.prototype.save = function (_a) {
         var id_user = _a.id_user, country = _a.country, street = _a.street, city = _a.city;
         return __awaiter(this, void 0, void 0, function () {

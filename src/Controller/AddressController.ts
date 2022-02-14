@@ -7,7 +7,15 @@ export default class AddressController {
         const service = new AddressServices();
         const addresses = await service.execute();
 
-        response.status(200).json(addresses);
+        return response.status(200).json(addresses);
+
+    }
+    async hadleExecuteOnce(request: Request, response: Response) {
+        const {id_user} = request.params;
+        const service = new AddressServices();
+        const address = await service.executeOnce(id_user);
+
+        return response.status(200).json(address);
 
     }
     async hadleSave(request: Request, response: Response) {

@@ -53,8 +53,23 @@ var AddressController = /** @class */ (function () {
                         return [4 /*yield*/, service.execute()];
                     case 1:
                         addresses = _a.sent();
-                        response.status(200).json(addresses);
-                        return [2 /*return*/];
+                        return [2 /*return*/, response.status(200).json(addresses)];
+                }
+            });
+        });
+    };
+    AddressController.prototype.hadleExecuteOnce = function (request, response) {
+        return __awaiter(this, void 0, void 0, function () {
+            var id_user, service, address;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        id_user = request.params.id_user;
+                        service = new AddressServices_1.default();
+                        return [4 /*yield*/, service.executeOnce(id_user)];
+                    case 1:
+                        address = _a.sent();
+                        return [2 /*return*/, response.status(200).json(address)];
                 }
             });
         });
