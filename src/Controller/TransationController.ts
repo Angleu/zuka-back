@@ -20,7 +20,7 @@ class TransationController {
         const { amount, description, type, to_user, email, coin } = request.body;
         const result = await new TransitionServices().save({amount, description, type, to_user, email, coin});
         if(result instanceof Error)
-            return response.status(401).json(result.message);
+            return response.status(300).json(result.message);
 
         return response.status(200).json(result);
     }
