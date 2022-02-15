@@ -77,7 +77,7 @@ var TransitionServices = /** @class */ (function () {
     TransitionServices.prototype.save = function (_a) {
         var to_user = _a.to_user, email = _a.email, amount = _a.amount, type = _a.type, description = _a.description, coin = _a.coin;
         return __awaiter(this, void 0, void 0, function () {
-            var repository, AccountRepository, t_user, userRepository, user, f_user, transation;
+            var repository, AccountRepository, t_user, userRepository, user, f_user, transation, newfB, newUB;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
@@ -112,13 +112,15 @@ var TransitionServices = /** @class */ (function () {
                         return [4 /*yield*/, repository.save(transation)];
                     case 4:
                         _b.sent();
+                        newfB = f_user.balance.toString();
+                        newUB = t_user.balance.toString();
                         return [4 /*yield*/, AccountRepository.update({ id_account: f_user.id_account }, {
-                                balance: f_user.balance + amount
+                                balance: Number.parseFloat(newfB) + amount
                             })];
                     case 5:
                         _b.sent();
                         return [4 /*yield*/, AccountRepository.update({ id_account: t_user.id_account }, {
-                                balance: t_user.balance - amount
+                                balance: Number.parseFloat(newUB) - amount
                             })];
                     case 6:
                         _b.sent();

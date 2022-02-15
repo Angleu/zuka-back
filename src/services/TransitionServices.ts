@@ -65,12 +65,13 @@ export default class TransitionServices {
         })
 
         await repository.save(transation);
-
+        const newfB = f_user.balance.toString()
+        const newUB = t_user.balance.toString()
         await AccountRepository.update({id_account:f_user.id_account },{
-            balance: f_user.balance + amount
+            balance:   Number.parseFloat(newfB) + amount
         })
         await AccountRepository.update({id_account:t_user.id_account },{
-            balance: t_user.balance - amount
+            balance: Number.parseFloat(newUB) - amount
         })
 
         return transation;
