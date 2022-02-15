@@ -24,7 +24,6 @@ export default class TransitionServices {
 
         const transation = await repository.find({
             where:{
-                from_user: account,
                 to_user: account
             }
         })

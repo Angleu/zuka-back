@@ -63,7 +63,6 @@ var TransitionServices = /** @class */ (function () {
                             return [2 /*return*/, new Error("Conta não Existe")];
                         return [4 /*yield*/, repository.find({
                                 where: {
-                                    from_user: account,
                                     to_user: account
                                 }
                             })];
